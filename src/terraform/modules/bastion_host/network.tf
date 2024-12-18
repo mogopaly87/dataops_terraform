@@ -7,25 +7,25 @@ data "aws_vpc" "main" {
 # Create a data source for the public subnet in
 # the AZ A using the corresponding variable
 data "aws_subnet" "public_subnet_a" {
-  id = var.public_subnet_a_id
+  id = var.None
 }
 
 # Create a data source for the public subnet in
 # the AZ B using the corresponding variable
-data "aws_subnet" "public_subnet_b" {
-  id = var.public_subnet_b_id
+data "None" "None" {
+  id = None.None
 }
 
 # Create a data source for the private subnet in
 # the AZ A using the corresponding variable
-data "aws_subnet" "private_subnet_a" {
-  id = var.private_subnet_a_id
+data "None" "None" {
+  id = None.None
 }
 
 # Create a data source for the private subnet in
 # the AZ B using the corresponding variable
-data "aws_subnet" "private_subnet_b" {
-  id = var.private_subnet_b_id
+data "None" "None" {
+  id = None.None
 }
 
 ### END CODE HERE ###
