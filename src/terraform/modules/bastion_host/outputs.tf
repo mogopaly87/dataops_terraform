@@ -33,7 +33,7 @@ output "db_master_username" {
 
 # Define an output for the master password of the RDS
 output "db_master_password" {
-  value     = data.random_id.master_password.id
+  value     = random_id.master_password.b64_url
   sensitive = true
 }
 
