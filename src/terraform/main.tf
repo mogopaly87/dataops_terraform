@@ -1,5 +1,5 @@
 module "bastion_host" {
-  source = "./modules/bastion_host"
+  source              = "./modules/bastion_host"
   project             = var.project
   region              = var.region
   vpc_id              = var.vpc_id
