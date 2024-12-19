@@ -4,8 +4,8 @@ resource "tls_private_key" "bastion_host_key_pair" {
 }
 
 resource "local_file" "ssh_key" {
-  filename = "${aws_key_pair.bastion_host_key_pair.key_name}.pem"
-  content  = tls_private_key.bastion_host_key_pair.private_key_pem
+  filename        = "${aws_key_pair.bastion_host_key_pair.key_name}.pem"
+  content         = tls_private_key.bastion_host_key_pair.private_key_pem
   file_permission = "0400"
 }
 
@@ -29,15 +29,15 @@ data "aws_ami" "latest_amazon_linux" {
 # key you created in the first resource in this file
 resource "aws_key_pair" "bastion_host_key_pair" {
   key_name   = "${var.project}-bastion-host-key"
-  public_key = None.None.public_key_openssh
+  public_key = tls_private_key.bastion_host_key_pair.public_key_openssh
 }
 
 # Complete the configuration for the EC2 instance
 # for the bastion host
 resource "aws_instance" "bastion_host" {
   ami                         = data.aws_ami.latest_amazon_linux.id
-  instance_type               = "None"                                   # Use the t3.nano instance type
-  key_name                    = None.None.None # Associate the aws key pair you created above
+  instance_type               = "t3.nano"                                   # Use the t3.nano instance type
+  key_name                    = aws_key_pair.bastion_host_key_pair.key_name # Associate the aws key pair you created above
   user_data                   = <<-EOF
     #!/bin/bash
     sudo yum update -y
@@ -45,8 +45,8 @@ resource "aws_instance" "bastion_host" {
     EOF
   user_data_replace_on_change = true
 
-  subnet_id                   = data.None.None.None   # Use the public subnet for AZ A
-  vpc_security_group_ids      = [None.None.id] # Use the security group you created for the bastion host
+  subnet_id                   = data.aws_subnet.public_subnet_a_id.id # Use the public subnet for AZ A
+  vpc_security_group_ids      = [aws_security_group.bastion_host.id]  # Use the security group you created for the bastion host
   associate_public_ip_address = true
 
   tags = {

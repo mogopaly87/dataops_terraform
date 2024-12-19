@@ -7,33 +7,33 @@ output "project" {
 # Define an output for the id of the EC2
 # instance
 output "bastion_host_id" {
-  value = None.None.id
+  value = aws_instance.bastion_host.id
 }
 
 # Define an output for the public DNS of the EC2
 # instance
 output "bastion_host_dns" {
-  value = None.None.None
+  value = aws_instance.bastion_host.public_dns
 }
 
 # Define an output for the hostname or address of the RDS
 output "db_host" {
-  value = None.None.None
+  value = aws_db_instance.database.address
 }
 
 # Define an output for the port of the RDS
 output "db_port" {
-  value = None.None.None
+  value = aws_db_instance.database.port
 }
 
 # Define an output for the username of the RDS
 output "db_master_username" {
-  value = None.None.None
+  value = var.db_master_username
 }
 
 # Define an output for the master password of the RDS
 output "db_master_password" {
-  value     = None.None.None
+  value     = data.random_id.master_password.id
   sensitive = true
 }
 

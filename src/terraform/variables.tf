@@ -23,16 +23,16 @@ variable "vpc_id" {
 # Define a variable `public_subnet_a_id` of type 
 # string for the id of the public subnet in the 
 # availability zone A
-variable "None" {
-  None        = None
+variable "public_subnet_a_id" {
+  type        = string
   description = "The id of the public subnet in the availability zone A"
 }
 
 # Define a variable `public_subnet_b_id` of type 
 # string for the id of the public subnet in the 
 # availability zone B
-variable "None" {
-  None        = None
+variable "public_subnet_b_id" {
+  type        = string
   description = "The id of the public subnet in the availability zone B"
 }
 
@@ -40,16 +40,16 @@ variable "None" {
 # Define a variable `private_subnet_a_id` of type 
 # string for the id of the private subnet in the 
 # availability zone A
-variable "None" {
-  None        = None
+variable "private_subnet_a_id" {
+  type        = string
   description = "The id of the private subnet in the availability zone A"
 }
 
 # Define a variable `private_subnet_b_id` of type 
 # string for the id of the private subnet in the 
 # availability zone B
-variable "None" {
-  None        = None
+variable "private_subnet_b_id" {
+  type        = string
   description = "The id of the private subnet in the availability zone B"
 }
 
