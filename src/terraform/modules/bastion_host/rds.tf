@@ -7,7 +7,7 @@ resource "random_id" "master_password" {
 # subnets of AZ A and B
 resource "aws_db_subnet_group" "database" {
   name       = "${var.project}-db-subnet-group"
-  subnet_ids = [data.aws_subnet.private_subnet_a_id, data.aws_subnet.private_subnet_b_id]
+  subnet_ids = [var.private_subnet_a_id, var.private_subnet_b_id]
 }
 
 # Complete the configuration for the RDS instance
